@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: davide
+      POSTGRES_PASSWORD: deid84
+      POSTGRES_DB: shorturl-rs
+    ports:
+      - 5432:5432
