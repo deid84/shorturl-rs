@@ -1269,6 +1269,8 @@ dependencies = [
  "dotenvy",
  "dotenvy_macro",
  "rand",
+ "serde",
+ "serde_json",
  "sqlx",
  "tokio",
  "tower",
