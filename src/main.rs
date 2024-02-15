@@ -13,6 +13,7 @@ async fn main() -> Result<()> {
     let db_url = dotenv!("DATABASE_URL").to_owned();
     // Connect to Postgres database
     let db = db::connect(db_url).await?;
+    // Start the http server
     http::serve(db).await?;
     Ok(())
 }
