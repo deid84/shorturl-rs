@@ -39,7 +39,7 @@ pub async fn get_url(
             // If an error occurs during resolution, construct a response with a '404 Not Found' status code
             // Include the error message in the response body to indicate the failure
             .status(StatusCode::NOT_FOUND)
-            .body(err.to_string())
+            .body(format!("Sorry your short URL does not exist!"))
             .unwrap(),
     }
 }
