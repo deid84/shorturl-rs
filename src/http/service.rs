@@ -24,7 +24,7 @@ pub async fn resolve_short_url(db: &Pool<Postgres>, url: String) -> Result<Strin
         }
         Err(err) => {
             // An error occurred during the database operation, returning the error
-            Err(err.into())
+            Err(err)
         }
     }
 }

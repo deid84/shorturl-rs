@@ -33,13 +33,13 @@ pub async fn get_url(
             // Set the 'Location' header to the resolved long URL and provide a body with a redirection message
             .status(StatusCode::MOVED_PERMANENTLY)
             .header("Location", result)
-            .body(format!("Redirecting..."))
+            .body("Redirecting...".to_string())
             .unwrap(),
-        Err(err) => Response::builder()
+        Err(_) => Response::builder()
             // If an error occurs during resolution, construct a response with a '404 Not Found' status code
             // Include the error message in the response body to indicate the failure
             .status(StatusCode::NOT_FOUND)
-            .body(format!("Sorry your short URL does not exist!"))
+            .body("Sorry your short URL does not exist!".to_string())
             .unwrap(),
     }
 }
@@ -49,7 +49,7 @@ pub async fn post_url(
     Form(form_data): Form<FormData>,
 ) -> Response<String> {
     // Check if the provided URL is valid
-    if let Ok(_) = Url::parse(&form_data.url) {
+    if Url::parse(&form_data.url).is_ok() {
         // Generate url random part
         match shorten_url(&state.db, form_data.url).await {
             Ok(result) => Response::builder()
@@ -70,7 +70,7 @@ pub async fn post_url(
             // If the provided URL is not valid, construct a response with status code '500 Internal Server Error'
             // Include a message in the response body indicating that the URL is not valid
             .status(StatusCode::INTERNAL_SERVER_ERROR)
-            .body(format!("Not a URL!"))
+            .body("Not a URL!".to_string())
             .unwrap()
     }
 }
