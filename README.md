@@ -22,7 +22,7 @@ An illustrative demonstration showcasing the use of Rust to create a simple and 
 
 For a comprehensive guide on this project, please refer to the following two articles on medium.com:
 
-- [Part 1 - coming soon](#)
+- [Part 1](https://levelup.gitconnected.com/crafting-a-rust-url-shortener-part-1-setting-up-your-project-9babe97b8962)
 - [Part 2 - coming soon](#)
 - [Part 3 - coming soon](#)
 
