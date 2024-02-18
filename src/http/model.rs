@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 /// This struct represents the URL db table: `id` and `long_url`.
-/// 
+///
 #[derive(Serialize, Deserialize)]
 pub struct Url {
     /// The random shorturl string
