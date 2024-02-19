@@ -49,31 +49,16 @@ pub async fn get_url(
 pub async fn post_url(
     State(state): State<Arc<AppState>>,
     Form(form_data): Form<FormData>,
-) -> Response<String> {
+) -> Html<String> {
     // Check if the provided URL is valid
     if Url::parse(&form_data.url).is_ok() {
         // Generate url random part
         match shorten_url(&state.db, form_data.url).await {
-            Ok(result) => Response::builder()
-                // If shortening is successful, construct a response with status code '200 OK'
-                // Include the shortened URL in the response body prefixed with the base URL
-                .status(StatusCode::OK)
-                .body(format!("{}{}", BASE_URL, result))
-                .unwrap(),
-            Err(err) => Response::builder()
-                // If an error occurs during shortening, construct a response with status code '500 Internal Server Error'
-                // Include the error message in the response body to indicate the failure
-                .status(StatusCode::INTERNAL_SERVER_ERROR)
-                .body(err.to_string())
-                .unwrap(),
+            Ok(result) => Html(format!("{}{}", BASE_URL, result)),
+            Err(err) => Html(format!("Something went wrong: {}", err)),
         }
     } else {
-        Response::builder()
-            // If the provided URL is not valid, construct a response with status code '500 Internal Server Error'
-            // Include a message in the response body indicating that the URL is not valid
-            .status(StatusCode::INTERNAL_SERVER_ERROR)
-            .body("Not a URL!".to_string())
-            .unwrap()
+        Html("This is not a valid URL".to_string())
     }
 }
 
