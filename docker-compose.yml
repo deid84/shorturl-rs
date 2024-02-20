@@ -1,17 +1,18 @@
 version: '3.8'
 
 services:
-  db:
-    image: postgres
+  redis:
+    image: redis:latest
+    command: redis-server --save 60 1 --loglevel warning
     restart: always
-    environment:
-      POSTGRES_USER: davide
-      POSTGRES_PASSWORD: deid84
-      POSTGRES_DB: shorturl-rs
     ports:
-      - 5432:5432
+      - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=deid84
+      - REDIS_USER=davide
+      - REDIS_DB=0
     volumes:
-    - pgdata:/var/lib/postgresql/data
+      - redis_data:/data
 
 volumes:
-  pgdata:
+  redis_data:
