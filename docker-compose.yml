@@ -7,10 +7,6 @@ services:
     restart: always
     ports:
       - "6379:6379"
-    environment:
-      - REDIS_PASSWORD=deid84
-      - REDIS_USER=davide
-      - REDIS_DB=0
     volumes:
       - redis_data:/data
 

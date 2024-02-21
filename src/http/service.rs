@@ -1,36 +1,35 @@
 use anyhow::Result;
 use rand::{distributions::Alphanumeric, Rng};
-use sqlx::{Error, Pool, Postgres};
 
 use super::model::Url;
 
 const MAX_RETRIES: usize = 5;
 const SHORTURL_LEN: usize = 4;
 
-pub async fn resolve_short_url(db: &Pool<Postgres>, url: String) -> Result<String, Error> {
-    // Check if random string already exists in db
-    // match sqlx::query_as!(
-    //     Url,
-    //     r#"SELECT * FROM url 
-    //             WHERE id = $1"#,
-    //     url
-    // )
-    // .fetch_one(db)
-    // .await
-    // {
-    //     Ok(data) => {
-    //         // The URL has been found in the database, returning the corresponding long URL
-    //         Ok(data.long_url)
-    //     }
-    //     Err(err) => {
-    //         // An error occurred during the database operation, returning the error
-    //         Err(err)
-    //     }
-    // }
-    Ok("ok".to_string())
-}
+// pub async fn resolve_short_url(url: String) -> Result<String, Error> {
+//     // Check if random string already exists in db
+//     // match sqlx::query_as!(
+//     //     Url,
+//     //     r#"SELECT * FROM url 
+//     //             WHERE id = $1"#,
+//     //     url
+//     // )
+//     // .fetch_one(db)
+//     // .await
+//     // {
+//     //     Ok(data) => {
+//     //         // The URL has been found in the database, returning the corresponding long URL
+//     //         Ok(data.long_url)
+//     //     }
+//     //     Err(err) => {
+//     //         // An error occurred during the database operation, returning the error
+//     //         Err(err)
+//     //     }
+//     // }
+//     Ok("ok".to_string())
+// }
 
-pub async fn shorten_url(db: &Pool<Postgres>, url: String) -> Result<String, Error> {
+// pub async fn shorten_url(url: String) -> Result<String, Error> {
     // Loop for a maximum number of retries
     // for _ in 0..MAX_RETRIES {
     //     let rng = rand::thread_rng();
@@ -76,5 +75,5 @@ pub async fn shorten_url(db: &Pool<Postgres>, url: String) -> Result<String, Err
     //     std::io::ErrorKind::Other,
     //     "Maximum retries reached without successful insertion",
     // )))
-    Ok("ok".to_string())
-}
+//     Ok("ok".to_string())
+// }
